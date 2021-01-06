@@ -1,0 +1,34 @@
+[
+    {
+        "value": "ehsan",
+        "children": [
+            {
+                "value": "mostafa",
+                "children": [
+                    {
+                        "value": "hamidreza",
+                        "children": [
+                            {
+                                "value": "majid",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "hashem",
+        "children": [
+            {
+                "value": "hassan",
+                "children": []
+            }
+        ]
+    },
+    {
+        "value": "mohsen",
+        "children": []
+    }
+]
