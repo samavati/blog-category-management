@@ -19,8 +19,8 @@ class Tree extends React.Component {
         return (
             <div class="ui list">
                 {node.children.map(child => {
-                    return (               
-                        <Item key={child.id} expandable={child.children.length}>
+                    return (
+                        <Item key={child.id} expandable={child.children.length > 0}>
 
                             <button
                                 className="mini red ui circular trash icon button"

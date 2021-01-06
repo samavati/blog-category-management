@@ -9,12 +9,24 @@ class Item extends React.Component {
 
     render() {
         const { expandable, expanded } = this.state;
-        return (
-            <div className="ui list">
-                {(expandable && !expanded) ? <i class="angle right icon"></i> : null}
-                {(expandable && expanded) ? <i class="angle down icon"></i> : null}
+        let content;
+
+        if (expandable) {
+            expanded ? content = (<div className="ui list">
+                <i class="angle down icon"></i>
                 {this.props.children}
-            </div>
+            </div>) : content = (<div className="ui list">
+            <i class="angle right icon"></i>
+                {this.props.children}
+            </div>)
+        } else {
+            content = null;
+        }
+
+        return (
+            <>
+                {content}
+            </>
         );
     }
 }
