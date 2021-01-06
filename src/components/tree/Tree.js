@@ -1,6 +1,6 @@
 import React from 'react';
 import './Tree.scss';
-import Ul from './../Ul';
+import Item from './Item';
 import { TreeStructure } from './lib/tree';
 
 class Tree extends React.Component {
@@ -17,10 +17,10 @@ class Tree extends React.Component {
 
     renderTree(node) {
         return (
-            <Ul className="ui list">
+            <div class="ui list">
                 {node.children.map(child => {
-                    return (
-                        <li className="ui list" key={child.id}>
+                    return (               
+                        <Item key={child.id} expandable={child.children.length}>
 
                             <button
                                 className="mini red ui circular trash icon button"
@@ -37,10 +37,10 @@ class Tree extends React.Component {
 
                             {child.value}
                             {child.children.length ? this.renderTree(child) : null}
-                        </li>
+                        </Item>
                     );
                 })}
-            </Ul>
+            </div>
         );
     }
 
