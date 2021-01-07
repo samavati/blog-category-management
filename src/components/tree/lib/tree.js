@@ -82,12 +82,13 @@ export class TreeStructure {
         return null;
     }
 
-    move(id, toId, toIndex) {
+    move(id, toId) {
         const element = this.remove(id);
         const parentTo = this.BFS(toId);
 
         if (element && parentTo) {
-            parentTo.addNode(element.value, toIndex, element.id);
+            element.parent = parentTo;
+            parentTo.pushNode(element);
             return true;
         }
 

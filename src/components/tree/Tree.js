@@ -15,27 +15,40 @@ class Tree extends React.Component {
         this.setState({ tree })
     }
 
+    ondragOver(e) {
+        e.preventDefault();
+    }
+
+    onDragStart(ev, elementId) {
+        ev.stopPropagation();
+        ev.dataTransfer.setData("id", elementId);
+        console.log(elementId)
+    }
+
+    onDrop(ev, toId) {
+        const { tree } = this.state;
+        const elementId = +ev.dataTransfer.getData("id");
+        if (elementId !== toId) {
+            tree.move(elementId, toId);
+            this.setState({ tree })
+        }
+    }
+
     renderTree(node) {
         return (
-            <div class="ui list">
+            <div className="ui list">
                 {node.children.map(child => {
                     return (
-                        <Item key={child.id} expandable={child.children.length > 0}>
-
-                            <button
-                                className="mini red ui circular trash icon button"
-                                type="button"
-                                onClick={() => { this.deleteNode(child.id) }}>
-                                <i className="trash icon"></i>
-                            </button>
-
-                            <button
-                                className="mini green ui circular icon button"
-                                type="button">
-                                <i className="plus icon"></i>
-                            </button>
-
-                            {child.value}
+                        <Item
+                            key={child.id}
+                            expandable={child.children.length > 0}
+                            name={child.value}
+                            id={child.id}
+                            delete={this.deleteNode.bind(this)}
+                            onDragStart={this.onDragStart.bind(this)}
+                            onDragOver={this.ondragOver.bind(this)}
+                            onDrop={this.onDrop.bind(this)}
+                        >
                             {child.children.length ? this.renderTree(child) : null}
                         </Item>
                     );
